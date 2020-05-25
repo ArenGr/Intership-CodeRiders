@@ -1,42 +1,19 @@
 <?php
-include "registration_logic_page.php";
+include "registration.php";
 ?>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" type='text/css'>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-<style>
-body{
-  margin-top: 30px;
-font-family: 'Montserrat', sans-serif;
-}
-.container-fluid{
-  width:500px;
-}
-article{
-  max-width: 450px;
-  background-color: #E9EBEB;
-}
-#button_create_account{
-  background-color:#14b195;
-}
-.help-block{
-  font-size: 12px;
-  color: red;
-  margin-left: 37px;
-}
-h4{
-   color:#CEE6E6;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="../styles/style.css" />
 <body>
   <div class="container-fluid">
     <div class="card bg-light">
       <article class="card-body mx-auto">
         <span>
-          <img src="logo.png" class="img-fluid " alt="CodeRiders">
+          <img src="../images/logo.png" class="img-fluid " alt="CodeRiders">
         </span>
         <h4 class="card-title mt-3 text-center">create your account</h4>
-        <form action="index.php" method="post">
+        <form action="" method="post">
           <div class="form-group input-group">
             <div class="input-group">
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -46,7 +23,7 @@ h4{
           </div>
           <div class="form-group input-group">
             <div class="input-group">
-              <span class="input-group-text" style="font-size:11px;"> <i class="fa fa-envelope"></i> </span>
+              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
               <input name="input_email" class="form-control" placeholder="Email address">
             </div>
             <div>
@@ -69,9 +46,9 @@ h4{
               </div>
           </div>
           <div class="form-group">
-            <input type="submit" class="btn btn-success btn-block rounded" name="submit" value="create account" id="button_create_account">
+            <input type="submit" class="btn btn-success btn-block rounded" name="submit" value="create account" id="button">
           </div>
-          <p class="text-center"><i>Have an account? </i><a href="login_form_page.php" style="color:#02b3e4">log in</a> </p>
+          <p class="text-center"><i>Have an account? </i><a href="../login/login_form.php">log in</a> </p>
         </form>
       </article>
     </div>

@@ -1,0 +1,23 @@
+body{
+    margin-top: 30px;
+    /* background-color: #CCCCCC; */
+}
+#header{
+    background-color: white;
+}
+.customFile{
+  size: 12px;  
+}
+#avatar{
+    background-color: #EEEBEB;
+}
+#logout{
+    margin-left: 550px;
+}
+.user_info{
+    font-size: 20px;
+    margin-left: 150px;
+}
+#data{
+    margin-top: 50px;
+}

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "config.php";
+include "../config/config.php";
 
 $user_name_err = $user_email_err = $user_password_err = "";
 
@@ -44,11 +44,12 @@ if (isset($_POST['submit'])) {
         $query_insert ="INSERT INTO users_data (user_name, email, password) VALUES ('$user_name', '$email', '$password')";
 
         if (!$result = mysqli_query($link, $query_insert)) {
-            header('Location: error.php');
+            header('Location: ../errors/error.php');
         }else{
-            /* $_SESSION['username'] = $username; */
+            $_SESSION['username'] = $user_name;
+            /* $_SESSION['email'] = $email; */
             /*     $_SESSION['success'] = "You are now logged in"; */
-            header('Location: login_form_page.php');
+            header('Location: ../login/login_form.php');
         }
     }
     mysqli_close($link);
