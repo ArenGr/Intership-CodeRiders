@@ -1,29 +1,32 @@
 $(document).ready(function (e) {
-    $("#uploadimage").on('submit',(function(e) {
+    $("#input-file").on('submit',(function(e) {
         e.preventDefault();
+        // $("#message").empty();
+        // $('#loading').show();
         $.ajax({
-            url: "profile_image_change.php", 
+            url: "../profile/profile_image_change.php", 
             type: "POST",             
             data: new FormData(this), 
             contentType: false,      
-            cache: false,             
-            processData:false,      
-            success: function(data)   
+            cache: false,           
+            processData:false,     
+            success: function(data)
             {
-                $("#message").html(data);
-            }
+                // $('#loading').hide();
+                // $("#message").html(data);
+            },
+            error: function(ts) { alert(ts.responseText) } 
         });
     }));
-
     $(function() {
         $("#input-file").change(function() {
-            $("#message").empty();
+            // $("#message").empty(); // To remove the previous error message
             var file = this.files[0];
             var imagefile = file.type;
             var match= ["image/jpeg","image/png","image/jpg"];
             if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
             {
-                $('#previewing').attr('src','1.png');
+                $('#previewing').attr('src','../images/avatar.png');
                 $("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
                 return false;
             }
@@ -43,4 +46,5 @@ $(document).ready(function (e) {
         $('#previewing').attr('height', '230px');
     };
 });
+
 

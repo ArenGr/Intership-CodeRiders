@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         $user_password_err = "Sorry, your password dosn`t match. Please, try again.";
     }
 
-    $user_check_query = "SELECT * FROM users_data WHERE user_name='$user_name' OR email='$email' LIMIT 1";
+    $user_check_query = "SELECT * FROM users WHERE user_name='$user_name' OR email='$email' LIMIT 1";
 
     if ($result = mysqli_query($link, $user_check_query)) {
         $user = mysqli_fetch_assoc($result);
@@ -40,16 +40,14 @@ if (isset($_POST['submit'])) {
 
     if (empty($user_name_err) && empty($user_email_err) && empty($user_password_err)) {
 
-        /* $password = md5($password); */
-        $query_insert ="INSERT INTO users_data (user_name, email, password) VALUES ('$user_name', '$email', '$password')";
+        $password = md5($password);
+        $query_insert ="INSERT INTO users (user_name, email, password, avatar) VALUES ('$user_name', '$email', '$password', '')";
 
         if (!$result = mysqli_query($link, $query_insert)) {
             header('Location: ../errors/error.php');
         }else{
             $_SESSION['username'] = $user_name;
-            /* $_SESSION['email'] = $email; */
-            /*     $_SESSION['success'] = "You are now logged in"; */
-            header('Location: ../login/login_form.php');
+            header('Location: ../index/index.php');
         }
     }
     mysqli_close($link);

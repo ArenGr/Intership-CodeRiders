@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 25, 2020 at 10:43 AM
+-- Generation Time: May 26, 2020 at 05:14 AM
 -- Server version: 5.7.30-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.4
 
@@ -17,48 +17,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `users`
+-- Database: `site`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_data`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `users_data` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
+  `password` varchar(40) NOT NULL,
+  `avatar` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_images`
---
-
-CREATE TABLE `users_images` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users_data`
+-- Indexes for table `users`
 --
-ALTER TABLE `users_data`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users_images`
---
-ALTER TABLE `users_images`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -66,15 +49,10 @@ ALTER TABLE `users_images`
 --
 
 --
--- AUTO_INCREMENT for table `users_data`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `users_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
---
--- AUTO_INCREMENT for table `users_images`
---
-ALTER TABLE `users_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

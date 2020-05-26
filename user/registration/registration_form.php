@@ -19,7 +19,6 @@ include "registration.php";
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
               <input name="input_user_name" class="form-control" placeholder="User name" type="text">
             </div>
-            <div> <?php if (!empty($user_name_err)):?><span class="help-block"><?php echo $user_name_err ?></span><?php endif;?> </div>
           </div>
           <div class="form-group input-group">
             <div class="input-group">
@@ -48,7 +47,7 @@ include "registration.php";
           <div class="form-group">
             <input type="submit" class="btn btn-success btn-block rounded" name="submit" value="create account" id="button">
           </div>
-          <p class="text-center"><i>Have an account? </i><a href="../login/login_form.php">log in</a> </p>
+          <p class="text-center"><i>Have an account? </i><a href="../index/index.php">log in</a> </p>
         </form>
       </article>
     </div>
