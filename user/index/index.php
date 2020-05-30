@@ -18,7 +18,7 @@ include "../login/login.php";
                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 <input name="input_email" class="form-control" placeholder="Enter email" type="text">
               </div>
-              <div> <?php if (!empty($login_email_err)):?><span class="help-block"><?php echo $login_email_err ?></span><?php endif;?> </div>
+              <?php if (!empty($login_email_err)):?><span class="help-block"><?php echo $login_email_err ?></span><?php endif;?>
             </div>
             <div class="form-group input-group">
               <div class="input-group">
@@ -26,9 +26,6 @@ include "../login/login.php";
                 <input name="input_password" class="form-control" placeholder="Enter password" type="password">
               </div>
               <?php if (!empty($login_password_err)):?><span class="help-block"><?php echo $login_password_err ?></span><?php endif;?>
-              <div>
-                <?php if (!empty($login_user_err)):?><span class="help-block"><?php echo $login_user_err ?></span><?php endif;?>
-              </div>
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-success btn-block rounded" value="login" name="login_submit" id="button">

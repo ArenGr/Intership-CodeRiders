@@ -96,14 +96,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                 $sql_select_files = "SELECT * FROM product_images WHERE product_id = '$id'";
 
                 if($result = mysqli_query($link, $sql_select_files)){
-                    $files_name_arr = array();
-
                     $dir = 'image_storage';
                     foreach ($result as $key => $value) {
                         $f_path = $dir.'/'.$value['name'];
                         if (file_exists($f_path)){
                             $image_data = base64_encode(file_get_contents($f_path));
                             echo '<div class="d-inline-block " style="margin:2%"><div><img src="data:image/jpeg;base64,'.$image_data.'" width="150" height="200"></div><div style="text-align:center"><button id="delete_image" class="btn btn-danger btn-sm" data-id=' . $value['id'] . ' data-name=' .$value['name'] . '>Delete</button></div></div>';
+                        }else {
+                            echo"the file dosnt exist";
                         }
                     }
                 }

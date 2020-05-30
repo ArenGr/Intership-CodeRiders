@@ -5,21 +5,24 @@ if (!isset($_SESSION['id'])) {
     $_SESSION['msg'] = "You must log in first";
     header('location: ../index/index.php');
 }
+include 'profile_image_change.php';
+$user =mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM users WHERE id=".$_SESSION['id']));
+$dir = '../user_images/';
+$avatar = '<img src="'.$dir.$user['avatar'].'" class="img-fluid img-thumbnail" width="200">'; 
 ?>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../styles/style_profile.css" />
-<script src="../scripts/script.js"></script>
+<!-- <script src="../scripts/script.js"></script> -->
 
-<?php include 'profile_image_change.php';?>
 <body>
  <div class="container mb-2 mt-2 ml-10" id="header">
     <div class="row">
       <div class="col-lg-5 col-md-20 mb-lg-1 pl-1 pt-1 mb-4">
         <div class="card testimonial-card" id="avatar">
           <div id="image_preview" class="avatar mx-auto white mt-4" >
-            <?php echo !isset($_SESSION['image']) ? "<img id='previewing' src='../images/avatar.png' class='img-fluid img-thumbnail'>" : $_SESSION['image'];?>
+            <?php echo !isset($avatar) ? '<img src="../images/avatar.png" id="previewing" class="img-fluid img-thumbnail">' : $avatar;?>
           </div>
 <div id="message"></div>
             <div class="card-body">
@@ -48,10 +51,9 @@ if (!isset($_SESSION['id'])) {
           <a href="../logout/logout.php" class="btn btn-outline-danger mt-4 ">Logout</a>
         </div>
         <div id="data">
-        <span class="user_info"> <b>Name:</b> name surname </span><br>
+        <span class="user_info"> <b>Name:</b> <?=$user['user_name']?> </span><br>
           <br>
-
-          <span class="user_info"> <b>Email:</b> exemple@gmail.com </span><br>
+          <span class="user_info"> <b>Email:</b> <?=$user['email']?></span><br>
           <br>
           <span class="user_info"> <b>Phone number:</b> +3 111 1111111</span>
           <br>

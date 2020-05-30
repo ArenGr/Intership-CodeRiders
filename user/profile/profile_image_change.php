@@ -26,27 +26,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $new_image_name = round(microtime(true) * 1000).'.'.$ext;
                     $file_path = "../user_images/".$new_image_name;
                     $_SESSION['filepath'] = $file_path;
-                    move_uploaded_file($file_name_tmp[$key], $file_path);
+                    if (move_uploaded_file($file_name_tmp[$key], $file_path)){
+                        $sql = "UPDATE users SET avatar='$new_image_name'";
+                        if (!mysqli_query($link, $sql)) {
+                            echo "Error: " . $sql . "<br>" . mysqli_error($link);
+                        }
+                    }
                 }else {
                     $file_type_err = "Error: Please select a valid file format.";
-                }
-
-                $sql = "UPDATE users SET avatar='$new_image_name'";
-                if (!mysqli_query($link, $sql)) {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($link);
-                }
-            }
-            $sql_select_files = "SELECT avatar FROM users WHERE id = '$user_id'";
-
-            if($result = mysqli_query($link, $sql_select_files)){
-
-                $dir = '../user_images';
-                $img = mysqli_fetch_assoc($result);
-                $f_path = $dir.'/'.$img['avatar'];
-                if (file_exists($f_path)){
-                    $image = base64_encode(file_get_contents($f_path));
-                    $_SESSION['image'] = '<img src="data:image/jpeg;base64,'.$image.'" width="150" height="200">';
-                    /* echo '<img src="data:image/jpeg;base64,'.$image.'" width="150" height="200">'; */
                 }
             }
         }

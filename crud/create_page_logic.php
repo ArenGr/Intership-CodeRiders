@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($file_size[$key] > $maxsize) {
                     $file_size_err = "Error: File size is larger than the allowed_types limit.";
                 }
-
+                
                 if(in_array($file_type[$key], $allowed_types)){
                     $new_image_name = round(microtime(true) * 1000).'.'.$ext;
                     move_uploaded_file($file_name_tmp[$key], "image_storage/".$new_image_name);

@@ -19,6 +19,9 @@ include "registration.php";
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
               <input name="input_user_name" class="form-control" placeholder="User name" type="text">
             </div>
+            <div>
+              <?php if (!empty($user_name_err)):?><span class="help-block"><?php echo $user_name_err ?></span><?php endif;?>
+            </div>
           </div>
           <div class="form-group input-group">
             <div class="input-group">
