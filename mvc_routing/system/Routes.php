@@ -1,50 +1,42 @@
 <?php
 namespace system;
+use controllers\Default_Ctrl;
 
 class Routes {
 
     function __construct($components){
 
-        $arr_components = explode('/', $components[0]);
-        array_shift($arr_components);
+        $components = explode('/', $components);
+        array_shift($components);
 
-        $routing = array(
-            'settings' => array(
-                'controllers'=>'Settings', 'action' => 'general'
-            ),
-            'other' => array(
-                'controllers'=>'Other', 'action' => 'general'
-            )
-        );
-
-        if (!empty($arr_components[0])) {
-            if (array_key_exists($arr_components[0], $routing)){
-                $controller = 'controllers\\'.$routing[$arr_components[0]]['controllers'];
-                if (class_exists($controller)){
-                    $controllerObj = new $controller();
-                }else{
-                    echo "Class dosn`t exists!";
-                }
-                if (!empty($arr_components[1])){
-                    $method = $arr_components[1];
-                    if (method_exists($controllerObj, $method)){
-                        if (isset($components[1])){
-                            $arr_components_query = explode('?', $components[1]);
-                            call_user_func_array(array($controllerObj, $method), $arr_components_query);
-                        }else{
-                            //Without parameters
-                        }
+        if (!empty($components[0])) {
+            $ctrl_class = 'controllers\\'.ucfirst($components[0]);
+            if (class_exists($ctrl_class)){
+                $ctrl_obj = new $ctrl_class();
+                if (!empty($components[1])){
+                    $ctrl_method = $components[1];
+                    if (method_exists($ctrl_obj, $ctrl_method)){
+                        $ctrl_method_args = array_slice($components, 2);
+                        call_user_func_array(array($ctrl_obj, $ctrl_method), $ctrl_method_args);
                     }else{
-                        echo 'Method dosent exists';
+                        if (method_exists($ctrl_obj, 'index')) {
+                            $ctrl_obj->index();
+                        }else{
+                            echo "ERROR: method index not found";
+                        }
                     }
-                }else{
-                    // Without methods
                 }
             }else{
-                echo "In controllers folder there isnot such file";
+                echo "Class dosn`t exists!";
             }
         }else{
-            // Main page
+            if(class_exists('controllers\\Default_Ctrl')){
+                new Default_Ctrl();
+            }else{
+                echo "ERROR: default class dos\'nt exist";
+            }
         }
     }
 }
+
+
